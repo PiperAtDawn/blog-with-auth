@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blogs</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light ms-2">
+      <%= link_to 'Блог с авторизацией', root_path, class: 'navbar-brand' %>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto me-2">
+          <% if user_signed_in? %>
+          <li class="nav-link active">
+            <%= link_to 'Выйти', destroy_user_session_path, method: :delete %>
+          </li>
+          <% else %>
+          <li class="nav-link active">
+            <%= link_to 'Войти', new_user_session_path %>
+          </li>
+          <li class="nav-link active">
+            <%= link_to 'Зарегистрироваться', new_user_registration_path %>
+          </li>
+          <% end %>
+          <li class="nav-link active">
+            <%= link_to 'Домой', root_path, class: 'nav-item' %>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <p><%= notice %></p>
+    <p><%= alert %></p>
+    <%= yield %>
+  </body>
+</html>
